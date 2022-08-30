@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    marginTop: 12,
+    marginTop: 7,
     borderWidth: 1,
     padding: 10,
     borderColor: '#e5a10d',

@@ -13,16 +13,17 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        // initialRouteName="Home"
         screenOptions={{headerShown: false}}>
         {isLogin ? (
           <>
-            <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="Home" component={Home} />
           </>
         ) : (
           <>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Home" component={Home} />
           </>
         )}
       </Stack.Navigator>

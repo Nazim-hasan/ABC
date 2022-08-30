@@ -1,11 +1,32 @@
 import {View, Text, TextInput, Button} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import React from 'react';
 import styles from './Styles';
-export default function LoginForm() {
+import axios from 'axios';
+const baseUrl = 'http://10.0.2.2:8000';
+
+export default function LoginForm({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const handleSignup = () => {};
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleLogin = e => {
+    e.preventDefault();
+    const data = {email: email, password: password};
+
+    axios
+      .post('http://10.0.2.2:8000/api/login', data)
+      .then(function (response) {
+        if (response.data === 'Success') {
+          navigation.navigate('Home');
+        } else if (response.data === 'Wrong email or password') {
+          alert('Wrong email or password');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.customHeader}>LOGIN</Text>
@@ -15,17 +36,19 @@ export default function LoginForm() {
 
         <TextInput
           style={styles.input}
-          onChangeText={e => {
-            setEmail(e.target.value);
-          }}
+          placeholder="Your Email"
+          placeholderTextColor="white"
+          color="white"
+          onChangeText={newText => setEmail(newText)}
           value={email}
         />
         <Text style={styles.customText}>Password</Text>
         <TextInput
           style={styles.input}
-          onChangeText={e => {
-            setPassword(e.target.value);
-          }}
+          placeholder="Your Password"
+          placeholderTextColor="white"
+          color="white"
+          onChangeText={newText => setPassword(newText)}
           value={password}></TextInput>
 
         <View
@@ -42,14 +65,19 @@ export default function LoginForm() {
               borderColor: '#e5a10d',
             }}>
             <Button
-              onPress={handleSignup}
+              onPress={() => navigation.navigate('Register')}
               title="SIGN UP"
               color="black"
               style={{borderColor: '#e5a10d'}}
             />
           </View>
-          <View style={{width: 120}}>
-            <Button onPress={handleSignup} title="LOGIN" color="#e5a10d" />
+          <View style={{width: 120, borderWidth: 1, backgroundColor: 'black'}}>
+            <Button
+              onPress={handleLogin}
+              title="LOGIN"
+              color="#e5a10d"
+              style={{color: 'black'}}
+            />
           </View>
         </View>
       </View>
