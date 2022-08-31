@@ -10,40 +10,53 @@ export default function RegisterForm({navigation}) {
   const [phone, setPhone] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const [imageUri, setImageUri] = React.useState(null);
+  const [profileUpload, setProfileUpload] = React.useState({});
 
   const handleChoosePhoto = () => {
-    const options = {
+    let options = {
       storageOptions: {
         path: 'images',
-        mediaType: 'photo',
+        mediaType: 'image',
       },
       includeBase64: true,
     };
     launchImageLibrary(options, response => {
-      alert(response.base64);
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: '.response.error);
+        console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
-        console.log('User Tapped custom Button: '.response.customButton);
+        console.log('User tapped custom button: ', response.customButton);
+        alert(response.customButton);
       } else {
-        const source = {uri: 'data:image/jpeg;base64,' + response.base64};
-        setImageUri(source);
-        // alert(source.uri);
+        //image data state
+        setProfileUpload({
+          uri: response.assets[0].uri,
+          type: response.assets[0].type,
+          base64: response.assets[0].base64,
+        });
       }
     });
   };
   const handleSignup = e => {
     e.preventDefault();
-    const data = {firstName, lastName, email, phone, password};
+    const data = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+      type: profileUpload['type'],
+      base64: profileUpload['base64'],
+    };
 
     axios
       .post('http://10.0.2.2:8000/api/register', data)
       .then(function (response) {
         if (response.data === 'Registered') {
           navigation.navigate('Login');
+        } else {
+          alert(response.data);
         }
       })
       .catch(function (error) {
@@ -107,9 +120,9 @@ export default function RegisterForm({navigation}) {
             justifyContent: 'space-between',
           }}>
           <Image
-            source={imageUri}
+            source={{uri: profileUpload['uri']}}
             style={{
-              width: 20,
+              width: 80,
             }}
           />
 

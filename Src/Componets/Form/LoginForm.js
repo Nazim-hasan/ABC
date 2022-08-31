@@ -17,7 +17,9 @@ export default function LoginForm({navigation}) {
       .post('http://10.0.2.2:8000/api/login', data)
       .then(function (response) {
         if (response.data === 'Success') {
-          navigation.navigate('Home');
+          navigation.navigate('Home', {
+            email: email,
+          });
         } else if (response.data === 'Wrong email or password') {
           alert('Wrong email or password');
         }
