@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import styles from './Styles';
 import axios from 'axios';
 import {launchImageLibrary} from 'react-native-image-picker';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 export default function RegisterForm({navigation}) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -40,6 +41,26 @@ export default function RegisterForm({navigation}) {
   };
   const handleSignup = e => {
     e.preventDefault();
+    if (firstName.length == 0) {
+      alert('Please Enter Your First Name');
+      return;
+    }
+    if (lastName.length == 0) {
+      alert('Please Enter Your Last Name');
+      return;
+    }
+    if (email.length == 0) {
+      alert('Please Enter Your Email');
+      return;
+    }
+    if (phone.length == 0) {
+      alert('Please Enter Your Contact number');
+      return;
+    }
+    if (password.length == 0) {
+      alert('Please Enter Password');
+      return;
+    }
     const data = {
       firstName,
       lastName,
@@ -69,6 +90,12 @@ export default function RegisterForm({navigation}) {
       <Text style={styles.customHeader}>SIGN UP</Text>
       <View style={{marginTop: 5, marginLeft: 30, marginRight: 30}}>
         <Text style={styles.customText}>First Name</Text>
+        <FontAwesome5
+          name={'user'}
+          size={20}
+          color={'white'}
+          style={styles.shiftFirstName}
+        />
         <TextInput
           style={styles.input}
           placeholder="Your first name"
@@ -78,6 +105,12 @@ export default function RegisterForm({navigation}) {
           value={firstName}
         />
         <Text style={styles.customText}>Last Name</Text>
+        <FontAwesome5
+          name={'user'}
+          size={20}
+          color={'white'}
+          style={styles.shiftLastName}
+        />
         <TextInput
           style={styles.input}
           placeholder="Your last name"
@@ -87,6 +120,12 @@ export default function RegisterForm({navigation}) {
           value={lastName}
         />
         <Text style={styles.customText}>Email</Text>
+        <FontAwesome5
+          name={'at'}
+          size={20}
+          color={'white'}
+          style={styles.shiftEmail}
+        />
         <TextInput
           style={styles.input}
           placeholder="Your Email"
@@ -96,6 +135,12 @@ export default function RegisterForm({navigation}) {
           value={email}
         />
         <Text style={styles.customText}>Phone</Text>
+        <FontAwesome5
+          name={'phone'}
+          size={20}
+          color={'white'}
+          style={styles.shiftPhone}
+        />
         <TextInput
           style={styles.input}
           placeholder="Your Phone Number"
@@ -105,6 +150,12 @@ export default function RegisterForm({navigation}) {
           value={phone}
         />
         <Text style={styles.customText}>Password</Text>
+        <FontAwesome5
+          name={'lock'}
+          size={20}
+          color={'white'}
+          style={styles.shiftPassword}
+        />
         <TextInput
           style={styles.input}
           placeholder="Your Password"

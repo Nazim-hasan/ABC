@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../Screens/Login/Login';
@@ -12,23 +12,26 @@ const Stack = createNativeStackNavigator();
 const Routes = () => {
   const [isLogin, setIsLogin] = useState(false);
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        // initialRouteName="Home"
-        screenOptions={{headerShown: false}}>
-        {isLogin ? (
-          <>
-            <Stack.Screen name="Home" component={TabRoutes} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Home" component={TabRoutes} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <StatusBar backgroundColor="black" barStyle="light-content" />
+      <NavigationContainer>
+        <Stack.Navigator
+          // initialRouteName="Home"
+          screenOptions={{headerShown: false}}>
+          {isLogin ? (
+            <>
+              <Stack.Screen name="Home" component={TabRoutes} />
+            </>
+          ) : (
+            <>
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Register" component={Register} />
+              <Stack.Screen name="Home" component={TabRoutes} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 

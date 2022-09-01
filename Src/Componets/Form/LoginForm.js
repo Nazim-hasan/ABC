@@ -2,25 +2,31 @@ import {View, Text, TextInput, Button} from 'react-native';
 import React from 'react';
 import styles from './Styles';
 import axios from 'axios';
-const baseUrl = 'http://10.0.2.2:8000';
-
+// import LinearGradient from 'react-native-linear-gradient';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 export default function LoginForm({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
+
+  const showPassword = () => {
+    console.log('password show');
+  };
 
   const handleLogin = e => {
     e.preventDefault();
+    if (email.length == 0) {
+      alert('Please Enter Your Email');
+      return;
+    }
+    if (password.length == 0) {
+      alert('Please Enter Your Password');
+      return;
+    }
     const data = {email: email, password: password};
-    // http://10.10.10.131/hello-superstarts/public/
     axios
       .post('http://10.10.10.131/hello-superstarts/public/api/login', data)
       .then(function (response) {
         if (response.data === 'Success') {
-          // navigation.navigate('Home', {
-          //   email: email,
-          // });
-
           navigation.navigate('Home', {
             screen: 'HomeScreen',
             params: {email: `${email}`},
@@ -39,8 +45,12 @@ export default function LoginForm({navigation}) {
       <Text style={styles.customHeader}>LOGIN</Text>
       <View style={{marginTop: 24, marginLeft: 30, marginRight: 30}}>
         <Text style={styles.customText}>Email</Text>
-        {/* <Icon name="rocket" size={30} color="#900" /> */}
-
+        <FontAwesome5
+          name={'envelope'}
+          size={20}
+          color={'white'}
+          style={styles.shiftPosition}
+        />
         <TextInput
           style={styles.input}
           placeholder="Your Email"
@@ -50,14 +60,27 @@ export default function LoginForm({navigation}) {
           value={email}
         />
         <Text style={styles.customText}>Password</Text>
+        <FontAwesome5
+          name={'lock'}
+          size={20}
+          color={'white'}
+          style={styles.shiftPositionPassword}
+        />
+        <FontAwesome5
+          name={'eye-slash'}
+          size={20}
+          color={'white'}
+          style={styles.shiftPositionRight}
+          onPress={showPassword}
+        />
         <TextInput
+          secureTextEntry={true}
           style={styles.input}
           placeholder="Your Password"
           placeholderTextColor="white"
           color="white"
           onChangeText={newText => setPassword(newText)}
           value={password}></TextInput>
-
         <View
           style={{
             flexDirection: 'row',

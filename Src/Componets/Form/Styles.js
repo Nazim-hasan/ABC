@@ -18,11 +18,27 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: '#e5a10d',
     borderRadius: 10,
+    paddingLeft: 35,
   },
   customText: {
     color: '#e5a10d',
 
     marginTop: 10,
+  },
+  shiftPosition: {
+    position: 'absolute',
+    left: 8,
+    top: 50,
+  },
+  shiftPositionPassword: {
+    position: 'absolute',
+    left: 8,
+    top: 130,
+  },
+  shiftPositionRight: {
+    position: 'absolute',
+    left: 300,
+    top: 130,
   },
 });
 export default styles;

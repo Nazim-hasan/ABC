@@ -1,12 +1,15 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-
-const About = () => {
+import styles from './Styles';
+const Explore = () => {
   return (
-    <View>
-      <Text>About</Text>
+    <View style={styles.container}>
+      <View style={styles.bannerContainer}>
+        <Text style={styles.titleText}>About</Text>
+      </View>
+      <View style={styles.bottomContainer}></View>
     </View>
   );
 };
 
-export default About;
+export default Explore;
