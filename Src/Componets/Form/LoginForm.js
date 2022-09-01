@@ -12,13 +12,18 @@ export default function LoginForm({navigation}) {
   const handleLogin = e => {
     e.preventDefault();
     const data = {email: email, password: password};
-
+    // http://10.10.10.131/hello-superstarts/public/
     axios
-      .post('http://10.0.2.2:8000/api/login', data)
+      .post('http://10.10.10.131/hello-superstarts/public/api/login', data)
       .then(function (response) {
         if (response.data === 'Success') {
+          // navigation.navigate('Home', {
+          //   email: email,
+          // });
+
           navigation.navigate('Home', {
-            email: email,
+            screen: 'HomeScreen',
+            params: {email: `${email}`},
           });
         } else if (response.data === 'Wrong email or password') {
           alert('Wrong email or password');

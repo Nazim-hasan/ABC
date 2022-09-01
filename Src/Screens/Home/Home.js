@@ -6,38 +6,31 @@ import axios from 'axios';
 
 export default function Home({route}) {
   const email = route.params;
-  const [image, setImage] = useState([]);
-
-  // http://10.0.2.2:8000/api/register
-  // http://127.0.0.1:8000/api/getUserImage
-  const getData = () => {
+  console.log(email);
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
     const data = {email: email['email']};
-
     axios
-      .post('http://10.0.2.2:8000/api/getUserImage', data)
+      .post(
+        'http://10.10.10.131/hello-superstarts/public/api/getUserImage',
+        data,
+      )
       .then(function (response) {
-        // setImage(response.data);
-        console.log(response);
+        setImage(response.data);
+        setLoading(true);
+        console.log('Image location: ' + image);
       })
       .catch(function (error) {
         console.log(error);
       });
-  };
+  }, []);
   return (
     <View>
-      <Text>Welcome Home</Text>
-      {/* <Text>Image URL: {image}</Text> */}
-      <Button
-        onPress={getData}
-        title="Get Data"
-        color="#e5a10d"
-        style={{color: 'black'}}
+      <Image
+        source={{uri: 'http://10.10.10.131/hello-superstarts/public/' + image}}
+        style={{width: 100, height: 100}}
       />
-      {/* <Image
-        source={{image}}
-        style={{
-          width: 80,
-        }} */}
     </View>
   );
 }

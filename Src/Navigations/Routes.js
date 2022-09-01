@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../Screens/Login/Login';
 import Home from '../Screens/Home/Home';
 import Register from '../Screens/Register/Register';
+import TabRoutes from './TabRoutes';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,13 +18,13 @@ const Routes = () => {
         screenOptions={{headerShown: false}}>
         {isLogin ? (
           <>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Home" component={TabRoutes} />
           </>
         ) : (
           <>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Home" component={TabRoutes} />
           </>
         )}
       </Stack.Navigator>

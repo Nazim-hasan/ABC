@@ -1,16 +1,16 @@
 import {View, Text, TextInput, Button, Image} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Styles';
 import axios from 'axios';
 import {launchImageLibrary} from 'react-native-image-picker';
 export default function RegisterForm({navigation}) {
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [profileUpload, setProfileUpload] = React.useState({});
+  const [profileUpload, setProfileUpload] = useState({});
 
   const handleChoosePhoto = () => {
     let options = {
@@ -51,7 +51,7 @@ export default function RegisterForm({navigation}) {
     };
 
     axios
-      .post('http://10.0.2.2:8000/api/register', data)
+      .post('http://10.10.10.131/hello-superstarts/public/api/register', data)
       .then(function (response) {
         if (response.data === 'Registered') {
           navigation.navigate('Login');
