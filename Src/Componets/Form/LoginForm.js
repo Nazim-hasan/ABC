@@ -2,7 +2,7 @@ import {View, Text, TextInput, Button} from 'react-native';
 import React from 'react';
 import styles from './Styles';
 import axios from 'axios';
-// import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 export default function LoginForm({navigation}) {
   const [email, setEmail] = React.useState('');
@@ -101,14 +101,27 @@ export default function LoginForm({navigation}) {
               style={{borderColor: '#e5a10d'}}
             />
           </View>
-          <View style={{width: 120, borderWidth: 1, backgroundColor: 'black'}}>
-            <Button
-              onPress={handleLogin}
-              title="LOGIN"
-              color="#e5a10d"
-              style={{color: 'black'}}
-            />
+
+          <View style={{width: 120, borderWidth: 1}}>
+            <LinearGradient
+              colors={['#f7c868', '#e39e0c', '#ffce66']}
+              style={styles.gradient}>
+              <Text style={styles.text} onPress={handleLogin}>
+                LOGIN
+              </Text>
+            </LinearGradient>
           </View>
+
+          {/* <View style={{width: 120, borderWidth: 1}}>
+            <LinearGradient colors={['#e5a10d', '#b77e17']} style={{flex: 1}}>
+              <Button
+                onPress={handleLogin}
+                title="LOGIN"
+                color="#e5a10d"
+                style={{color: 'black'}}
+              />
+            </LinearGradient>
+          </View> */}
         </View>
       </View>
     </View>

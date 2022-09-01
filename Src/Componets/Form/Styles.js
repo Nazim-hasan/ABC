@@ -40,5 +40,19 @@ const styles = StyleSheet.create({
     left: 300,
     top: 130,
   },
+  gradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  button: {
+    width: '70%',
+    height: 45,
+  },
+  text: {
+    color: 'white',
+    fontSize: 16,
+  },
 });
 export default styles;
