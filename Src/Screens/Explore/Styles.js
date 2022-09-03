@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     flex: 8,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
@@ -21,6 +21,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: 'black',
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });
 export default styles;
