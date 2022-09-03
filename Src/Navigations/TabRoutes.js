@@ -3,11 +3,9 @@ import {Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Login from '../Screens/Login/Login';
 import Home from '../Screens/Home/Home';
-import Register from '../Screens/Register/Register';
+import UploadVideo from '../Screens/Upload/UploadVideo';
 import Explore from '../Screens/Explore/Explore';
-import About from '../Screens/About/About';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +41,20 @@ const TabRoutes = ({route}) => {
           }}
         />
         <Tab.Screen
+          name="Add"
+          component={UploadVideo}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <Image
+                  style={{tintColor: focused ? 'red' : 'gray'}}
+                  source={require('../Images/add_circle_FILL0_wght400_GRAD0_opsz48.png')}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
           name="Explore"
           component={Explore}
           options={{
@@ -51,20 +63,6 @@ const TabRoutes = ({route}) => {
                 <Image
                   style={{tintColor: focused ? 'red' : 'gray'}}
                   source={require('../Images/explore.png')}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name="About"
-          component={About}
-          options={{
-            tabBarIcon: ({focused}) => {
-              return (
-                <Image
-                  style={{tintColor: focused ? 'red' : 'gray'}}
-                  source={require('../Images/person.png')}
                 />
               );
             },
